@@ -1,0 +1,156 @@
+1
+CREATE TABLE Clientes (
+    id_cliente INT NOT NULL,
+    nombre VARCHAR(30),
+    direccion VARCHAR(50),
+    telefono VARCHAR(10),
+    PRIMARY KEY (id_cliente)
+);
+
+2
+INSERT INTO Clientes (id_cliente, nombre, direccion, telefono)
+VALUES
+    (1,'Pepe', 'Calle Rosario', '123456789'),
+    (2,'JUan', 'Calle Arquitecto Vandelvira', '987654321');
+
+3
+SELECT * FROM Clientes;
+
+4
+SELECT id_cliente FROM Clientes WHERE nombre='Pepe';
+
+5
+SELECT nombre, telefono FROM Clientes;
+
+Programación
+1.
+ public static void main(String[] args) {
+        int [] numeros={5,3,1,0,7};
+        
+        
+        for (int i = 0; i < numeros.length; i++) {
+            
+           System.out.println(numeros[i]);
+           
+               
+        }
+        
+    }
+    
+2, 3 y 4
+
+public class Cliente {
+    
+    private int id_cliente;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id_cliente=" + id_cliente + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + '}';
+    }
+
+    public void PedirDatos () {
+        
+        Scanner teclado=new Scanner(System.in);
+        
+        System.out.println("Dime el id del cliente");
+        int id_cliente = teclado.nextInt();
+     
+        System.out.println("Dime el nombre del cliente");
+        String nombre = teclado.next();
+        teclado.nextLine(); 
+
+        System.out.println("Dime la dirección del cliente");
+        String direccion = teclado.nextLine();
+
+        System.out.println("Dime el teléfono del cliente");
+        String telefono = teclado.next();
+        
+        
+        this.id_cliente = id_cliente;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        
+        
+    }
+
+    
+    
+}
+
+
+Parte 2
+
+package numeros;
+
+import java.io.IOException;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+public class Numeros {
+
+   
+    public static void main(String[] args) throws ExcepcionCero {
+        
+        double numero1, numero2;
+        double division;
+        
+        Scanner teclado=new Scanner(System.in);
+        
+       
+            try {
+                 System.out.println("Dime un número: ");
+                 numero1=teclado.nextDouble();
+                 System.out.println("Dime otro número: "); 
+                 numero2=teclado.nextDouble();
+                 
+                 
+                        while (numero2==0){
+                            if (numero2==0) {
+                              throw new ExcepcionCero();  
+                            }
+                            System.out.println("Dime otro número: "); 
+                            numero2=teclado.nextInt();
+                           
+                            
+                           
+                                 
+                       } 
+                      
+              
+                 division=numero1/numero2;
+                 System.out.println("La division de "+numero1+" y "+numero2+" es "+division);
+                
+               
+                    } catch (InputMismatchException ex){
+                   System.out.println("No se ha podido realizar la operación: ");
+                
+                
+              } catch (ExcepcionCero ex) {
+                  System.out.println("Error: "+ex.getMessage());
+                  
+              }
+         
+            
+    
+} 
+}
+
+
+
+
+package numeros;
+
+
+public class ExcepcionCero extends Exception {
+
+    public ExcepcionCero() {
+        super("El segundo número no puede ser cero");
+    }
+    
+}
+
